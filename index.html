@@ -3,11 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Tic-tac-toe</title>
 </head>
 <body>
     <header><h1>Welcome to the game tic-tac-toe!</h1></header>
-    <main></main>
+    <main>
+        <div class="gameContainer">
+            <div class="boardContainer">
+                <div class="board">
+                </div>
+            </div>
+            <div class="infoContainer">
+                <h3>Tic Tac Toe</h3>
+                <div class="announcer">
+                    Player1 is always first
+                </div>
+                <div class="player1name">
+                    <label for="player1">Player1 name:</label>
+                    <input type="text" id=player1 value="Player1" placeholder="Player1's name">
+                </div>
+                
+                <div class="player2name">
+                    <label for="player2">Player2 name:</label>
+                    <input type="text" id="player2" value="Player2">    
+                </div>
+                
+                <div class="controlButtons">
+                    <button id="startGameButton">Start Game</button>
+                    <button>Restart</button>
+                </div>
+                
+            </div>
+        </div>
+    </main>
 </body>
 </html>
