@@ -13,6 +13,9 @@
         <div class="gameContainer">
             <div class="boardContainer">
                 <div class="board">
+                    <div class="introText">
+                        <h3>Enter player names and click start game</h3>
+                    </div>
                 </div>
             </div>
             <div class="infoContainer">
@@ -20,15 +23,18 @@
                 <div class="announcer">
                     Player1 is always first
                 </div>
-                <div class="player1name">
-                    <label for="player1">Player1 name:</label>
-                    <input type="text" id=player1 value="Player1" placeholder="Player1's name">
+                <div class="inputContainer">
+                    <div class="player1name">
+                        <label for="player1">Player1 name:</label>
+                        <input type="text" id=player1 value="Player1" placeholder="Player1's name">
+                    </div>
+                    
+                    <div class="player2name">
+                        <label for="player2">Player2 name:</label>
+                        <input type="text" id="player2" value="Player2">    
+                    </div>
                 </div>
                 
-                <div class="player2name">
-                    <label for="player2">Player2 name:</label>
-                    <input type="text" id="player2" value="Player2">    
-                </div>
                 
                 <div class="controlButtons">
                     <button id="startGameButton">Start Game</button>
