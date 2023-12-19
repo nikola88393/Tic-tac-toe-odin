@@ -40,18 +40,20 @@ let gameboard = (function () {
             moves[3] && moves[3] === moves[4] && moves[4] === moves[5] ||
             moves[6] && moves[6] === moves[7] && moves[7] === moves[8]) {
             updateAnnouncer(`${player.name} wins!`);
-            resetBoard();
+            game.timeout();
         }
         else if (moves[0] && moves[0] === moves[4] && moves[4] === moves[8] ||
             moves[2] && moves[2] === moves[4] && moves[4] === moves[6]) {
             updateAnnouncer(`${player.name} wins!`);
-            resetBoard();
+            game.timeout();
+
         }
         else if (moves[0] && moves[0] === moves[3] && moves[3] === moves[6] ||
             moves[1] && moves[1] === moves[4] && moves[4] === moves[7] ||
             moves[2] && moves[2] === moves[5] && moves[5] === moves[8]) {
             updateAnnouncer(`${player.name} wins!`);
-            resetBoard();
+            game.timeout();
+
         }
         else {
             checkDraw();
@@ -75,7 +77,8 @@ let gameboard = (function () {
     let checkDraw = () => {
         if (moves.every(move => move !== "")) {
             updateAnnouncer("It's a draw!");
-            resetBoard();
+            game.timeout();
+
         }
     }
 
@@ -138,10 +141,15 @@ let game = (function () {
         })
     }
 
+    let timeout = () => {
+        setTimeout(gameboard.resetBoard, 2000);
+    }
+
     return {
         startGame,
         markBoard,
-        resetPlayerIndex
+        resetPlayerIndex,
+        timeout
     }
 })();
 
