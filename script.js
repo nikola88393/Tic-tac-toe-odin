@@ -70,8 +70,10 @@ let gameboard = (function () {
     }
 
     let updateAnnouncer = (string = "Have fun!") => {
-        let annoucner = document.querySelector('.announcer');
-        annoucner.innerHTML = string;
+        let announcers = document.querySelectorAll('.announcer');
+        announcers.forEach(announcer => {
+            announcer.innerHTML = string
+        })
     }
 
     let checkDraw = () => {
@@ -101,6 +103,8 @@ let game = (function () {
         let startButton = document.getElementById('startGameButton');
 
         let startButtonClickHandler = () => {
+            players.splice(0, 2);
+
             players = [
                 createPlayer(document.getElementById('player1').value, 'X'),
                 createPlayer(document.getElementById('player2').value, 'O')
@@ -108,13 +112,31 @@ let game = (function () {
 
             gameboard.drawBoard();
 
-            startButton.removeEventListener('click', startButtonClickHandler);
-
             markBoard();
         };
 
         startButton.addEventListener('click', startButtonClickHandler);
+        restartGame();
     };
+
+    let restartGame = () => {
+        let restartButton = document.getElementById('restartGameButton');
+
+        let restartButtonClickHandler = () => {
+            players.splice(0, 2);
+            console.log(players);
+
+            let container = document.querySelector('.board');
+            container.innerHTML = '';
+            let introText = document.createElement('div');
+            introText.setAttribute('class', 'introText');
+            introText.innerHTML = "Enter player names and click start game";
+            container.appendChild(introText);
+            gameboard.updateAnnouncer();
+        };
+
+        restartButton.addEventListener('click', restartButtonClickHandler);
+    }
 
     let playerSwitch = () => {
         currentPlayerIndex = (currentPlayerIndex === 1) ? 0 : 1;
@@ -142,7 +164,14 @@ let game = (function () {
     }
 
     let timeout = () => {
+        let overlay = document.querySelector('.overlay')
+        // overlay.innerHTML = 'asdasdasd';
+        overlay.style.display = 'flex';
+
         setTimeout(gameboard.resetBoard, 2000);
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 2000);
     }
 
     return {
