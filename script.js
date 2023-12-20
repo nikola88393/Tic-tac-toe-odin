@@ -113,8 +113,8 @@ let game = (function () {
             players.splice(0, 2);
 
             players = [
-                createPlayer(document.getElementById('player1').value, 'X'),
-                createPlayer(document.getElementById('player2').value, 'O')
+                createPlayer(document.getElementById('player1').value, 'X'),//'❌'
+                createPlayer(document.getElementById('player2').value, 'O'),//'⭕'
             ];
 
             gameboard.drawBoard();

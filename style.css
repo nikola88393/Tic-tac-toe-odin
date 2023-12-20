@@ -141,7 +141,7 @@ main {
     background-color: var(--mainBackground);
     border: 2px solid var(--mainBackground);
     margin: 0;
-    height: 25px;
+    height: 21px;
     border-radius: 7px;
     /* margin: 5px; */
 }
