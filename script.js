@@ -90,8 +90,6 @@ let gameboard = (function () {
 
     return {
         drawBoard,
-        render,
-        checkWin,
         resetBoard,
         updateAnnouncer,
         updateMoves
@@ -134,7 +132,6 @@ let game = (function () {
             score = [0, 0];
             document.querySelector('.player1Score').innerHTML = '';
             document.querySelector('.player2Score').innerHTML = '';
-            console.log(players);
 
             let container = document.querySelector('.board');
             container.innerHTML = '';
@@ -143,6 +140,7 @@ let game = (function () {
             introText.innerHTML = "Enter player names and click start game";
             container.appendChild(introText);
             gameboard.updateAnnouncer('Player1 is always first');
+            gameboard.resetBoard();
         };
 
         restartButton.addEventListener('click', restartButtonClickHandler);
@@ -202,7 +200,6 @@ let game = (function () {
 
     let timeout = () => {
         let overlay = document.querySelector('.overlay')
-        // overlay.innerHTML = 'asdasdasd';
         overlay.style.display = 'flex';
 
         setTimeout(gameboard.resetBoard, 2000);
@@ -213,7 +210,6 @@ let game = (function () {
 
     return {
         startGame,
-        markBoard,
         resetPlayerIndex,
         timeout,
         scoreCounter,
