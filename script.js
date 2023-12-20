@@ -225,6 +225,7 @@ let game = (function () {
         setTimeout(() => {
             overlay.style.display = 'none';
         }, 2000);
+        // gameboard.updateAnnouncer();
     }
 
     return {
