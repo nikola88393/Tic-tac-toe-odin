@@ -40,11 +40,13 @@ let gameboard = (function () {
             moves[3] && moves[3] === moves[4] && moves[4] === moves[5] ||
             moves[6] && moves[6] === moves[7] && moves[7] === moves[8]) {
             updateAnnouncer(`${player.name} wins!`);
+            game.scoreCounter(player.name);
             game.timeout();
         }
         else if (moves[0] && moves[0] === moves[4] && moves[4] === moves[8] ||
             moves[2] && moves[2] === moves[4] && moves[4] === moves[6]) {
             updateAnnouncer(`${player.name} wins!`);
+            game.scoreCounter(player.name);
             game.timeout();
 
         }
@@ -52,6 +54,7 @@ let gameboard = (function () {
             moves[1] && moves[1] === moves[4] && moves[4] === moves[7] ||
             moves[2] && moves[2] === moves[5] && moves[5] === moves[8]) {
             updateAnnouncer(`${player.name} wins!`);
+            game.scoreCounter(player.name);
             game.timeout();
 
         }
@@ -79,6 +82,7 @@ let gameboard = (function () {
     let checkDraw = () => {
         if (moves.every(move => move !== "")) {
             updateAnnouncer("It's a draw!");
+            game.drawScoreUpdate();
             game.timeout();
 
         }
@@ -96,6 +100,8 @@ let gameboard = (function () {
 
 let game = (function () {
     let currentPlayerIndex = 1;
+    //roudns[0] = player1 score; rounds[1] = player2 score
+    let score = [0, 0];
 
     let players = [];
 
@@ -111,11 +117,12 @@ let game = (function () {
             ];
 
             gameboard.drawBoard();
-
+            setScoreCounter();
             markBoard();
         };
 
         startButton.addEventListener('click', startButtonClickHandler);
+
         restartGame();
     };
 
@@ -124,6 +131,9 @@ let game = (function () {
 
         let restartButtonClickHandler = () => {
             players.splice(0, 2);
+            score = [0, 0];
+            document.querySelector('.player1Score').innerHTML = '';
+            document.querySelector('.player2Score').innerHTML = '';
             console.log(players);
 
             let container = document.querySelector('.board');
@@ -132,7 +142,7 @@ let game = (function () {
             introText.setAttribute('class', 'introText');
             introText.innerHTML = "Enter player names and click start game";
             container.appendChild(introText);
-            gameboard.updateAnnouncer();
+            gameboard.updateAnnouncer('Player1 is always first');
         };
 
         restartButton.addEventListener('click', restartButtonClickHandler);
@@ -163,6 +173,33 @@ let game = (function () {
         })
     }
 
+    let setScoreCounter = () => {
+        let player1Score = document.querySelector('.player1Score');
+        let player2Score = document.querySelector('.player2Score');
+
+        player1Score.innerHTML = `${players[0].name}: ${score[0]}`;
+        player2Score.innerHTML = `${players[1].name}: ${score[1]}`;
+    }
+
+    let drawScoreUpdate = () => {
+        score[0] += 1;
+        score[1] += 1;
+        setScoreCounter();
+    }
+
+    let scoreCounter = (name) => {
+        let player1Score = document.querySelector('.player1Score');
+        let player2Score = document.querySelector('.player2Score');
+
+        if (players[0].name === name) {
+            score[0] += 1;
+        }
+        else if (players[1].name === name) {
+            score[1] += 1;
+        }
+        setScoreCounter();
+    }
+
     let timeout = () => {
         let overlay = document.querySelector('.overlay')
         // overlay.innerHTML = 'asdasdasd';
@@ -178,7 +215,9 @@ let game = (function () {
         startGame,
         markBoard,
         resetPlayerIndex,
-        timeout
+        timeout,
+        scoreCounter,
+        drawScoreUpdate
     }
 })();
 
