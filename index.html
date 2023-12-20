@@ -8,9 +8,9 @@
     <title>Tic-tac-toe</title>
 </head>
 <body>
-    <header><h1>Welcome to the game tic-tac-toe!</h1></header>
     <main>
         <div class="gameContainer">
+            <div class="header">Tic-Tac-Toe</div>
             <div class="boardContainer">
                 <div class="overlay announcer"></div>
                 <div class="board">
@@ -20,7 +20,6 @@
                 </div>
             </div>
             <div class="infoContainer">
-                <h3>Tic Tac Toe</h3>
                 <div class="announcer">
                     Player1 is always first
                 </div>
@@ -34,17 +33,18 @@
                         <label for="player2">Player2 name:</label>
                         <input type="text" id="player2" value="Player2">    
                     </div>
+                    <button class="button" id="startGameButton">Start Game</button>
+
                 </div>
                 <div class="scoreBoard">
-                    score
+                    <!-- score -->
                     <p class="player1Score"></p>
                     <p class="player2Score"></p>
+                    <button class="button" id="restartGameButton">Restart Game</button>
                 </div>
                 
-                <div class="controlButtons">
-                    <button id="startGameButton">Start Game</button>
-                    <button id="restartGameButton">Restart</button>
-                </div>
+                <!-- <div class="controlButtons"> -->
+                <!-- </div> -->
                 
             </div>
         </div>

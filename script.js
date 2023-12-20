@@ -115,6 +115,7 @@ let game = (function () {
             ];
 
             gameboard.drawBoard();
+            toggleInputsAndScore();
             setScoreCounter();
             markBoard();
         };
@@ -141,6 +142,7 @@ let game = (function () {
             container.appendChild(introText);
             gameboard.updateAnnouncer('Player1 is always first');
             gameboard.resetBoard();
+            toggleInputsAndScore();
         };
 
         restartButton.addEventListener('click', restartButtonClickHandler);
@@ -197,6 +199,17 @@ let game = (function () {
         }
         setScoreCounter();
     }
+
+    let toggleInputsAndScore = () => {
+        let inputContainer = document.querySelector('.inputContainer');
+        let inputContainerStyle = window.getComputedStyle(inputContainer);
+        inputContainer.style.display = (inputContainerStyle.getPropertyValue('display') === 'block') ? 'none' : 'block';
+
+        let scoreContainer = document.querySelector('.scoreBoard');
+        let scoreContainerStyle = window.getComputedStyle(scoreContainer);
+        scoreContainer.style.display = (scoreContainerStyle.getPropertyValue('display') === 'none') ? 'block' : 'none';
+    };
+
 
     let timeout = () => {
         let overlay = document.querySelector('.overlay')
