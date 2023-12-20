@@ -154,6 +154,7 @@ main {
 
 .player1name input:hover,
 .player1name input:focus,
+.player1name input:active,
 .player2name input:hover,
 .player2name input:focus {
     border: 1px solid var(--blue);
@@ -175,4 +176,17 @@ main {
 
 .scoreBoard {
     display: none;
+}
+
+@media(max-width: 768px) {
+    .gameContainer {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .board {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+        grid-gap: 10px;
+    }
 }
