@@ -16,7 +16,10 @@ let gameboard = (function () {
             cell.setAttribute('class', `cell`);
             cell.setAttribute('id', `cell${i}`);
             cell.innerHTML = moves[i];
-            container.appendChild(cell);
+            setTimeout(() => {
+                container.appendChild(cell)
+            }, i * 50);
+            // container.appendChild(cell);
         }
     }
 
@@ -116,8 +119,11 @@ let game = (function () {
 
             gameboard.drawBoard();
             toggleInputsAndScore();
-            setScoreCounter();
-            markBoard();
+            // Timeout needed to be added so that functions below get executed after the timeout in drawBoard() has ended
+            setTimeout(() => {
+                setScoreCounter();
+                markBoard();
+            }, 450);
         };
 
         startButton.addEventListener('click', startButtonClickHandler);
@@ -203,11 +209,11 @@ let game = (function () {
     let toggleInputsAndScore = () => {
         let inputContainer = document.querySelector('.inputContainer');
         let inputContainerStyle = window.getComputedStyle(inputContainer);
-        inputContainer.style.display = (inputContainerStyle.getPropertyValue('display') === 'block') ? 'none' : 'block';
+        inputContainer.style.display = (inputContainerStyle.getPropertyValue('display') === 'flex') ? 'none' : 'flex';
 
         let scoreContainer = document.querySelector('.scoreBoard');
         let scoreContainerStyle = window.getComputedStyle(scoreContainer);
-        scoreContainer.style.display = (scoreContainerStyle.getPropertyValue('display') === 'none') ? 'block' : 'none';
+        scoreContainer.style.display = (scoreContainerStyle.getPropertyValue('display') === 'none') ? 'flex' : 'none';
     };
 
 
