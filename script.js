@@ -183,8 +183,8 @@ let game = (function () {
         let player1Score = document.querySelector('.player1Score');
         let player2Score = document.querySelector('.player2Score');
 
-        player1Score.innerHTML = `${players[0].name}: ${score[0]}`;
-        player2Score.innerHTML = `${players[1].name}: ${score[1]}`;
+        player1Score.innerHTML = `${players[0].name}(X): ${score[0]}`;
+        player2Score.innerHTML = `${players[1].name}(O): ${score[1]}`;
     }
 
     let drawScoreUpdate = () => {
